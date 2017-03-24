@@ -1,0 +1,19 @@
+F ← input CNF formula
+for i = 1 to max_tries do
+	I ← random interpretation for F
+	for j = 1 to max_flips do
+		if I satisfies F then
+			return I
+		endif
+		C ← a clause of F not satisfied by I
+		S ← set of variables that appear in C
+		b ← min({broken(p,F,I) | p in S})
+		if b > 0 and with probability ω then
+			p ← a variable of S
+		else
+			p ← a variable of S s.t. broken(p,F,I) = b
+		endif
+		I ← I with the value of p flipped
+	endfor
+endfor
+return “No solution found”

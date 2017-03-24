@@ -1,0 +1,30 @@
+-------------------- RUNSAT.PY (NO RNG) --------------------
+
+All 200 benchmark: 160.88
+
+
+-------------------- RUNSAT.PY (RNG < 0.3) --------------------
+
+All 200 benchmark: 93.18
+All 200 benchmark: 93.24
+
+-------------------- RUNSAT.PY (RNG < 0.4) --------------------
+
+All 200 benchmark: 92.13
+All 200 benchmark: 92.51
+
+-------------------- RUNSAT.PY (RNG < 0.45) --------------------
+
+All 200 benchmark: 92.51
+All 200 benchmark:
+
+-------------------- RUNSAT.PY (RNG < 0.5) --------------------
+
+All 200 benchmark: 91.73
+All 200 benchmark: 91.96
+All 200 benchmark: 93.03
+
+-------------------- WALKSAT.PY --------------------
+
+All 200 benchmark: 160.61
+All 200 benchmark: 151.05
