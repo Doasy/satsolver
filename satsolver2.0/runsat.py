@@ -29,7 +29,8 @@ return "No solution found".
 
 # positions_with_zero = [i for i, j in enumerate(num_sat_lit) if j == 0]
 # x = positions_with_zero[randint(0, len(positions_with_zero)-1)]
- 
+
+
 def runsat(clauses, n_vars):
     F = clauses
     literals_in_clauses = createDataStruct(F, n_vars)
@@ -50,7 +51,6 @@ def runsat(clauses, n_vars):
                 else:
                     to_swap = broken(F[x], num_sat_lit,
                                      literals_in_clauses, sol)
-
             if sol[to_swap - 1] < 0:
                 for element in literals_in_clauses[to_swap - 1]:
                     num_sat_lit[element] += 1
@@ -62,8 +62,6 @@ def runsat(clauses, n_vars):
                 for element in literals_in_clauses[-to_swap]:
                     num_sat_lit[element] += 1
             sol[to_swap - 1] *= -1
-            
-        
 
 
 def broken(clause, num_sat_lit, literals_in_clauses, sol):
