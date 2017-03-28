@@ -42,8 +42,8 @@ def runsat(clauses, n_vars):
             # print num_sat_lit
             positions_with_zero = [
                 i for i, j in enumerate(num_sat_lit) if j == 0]
-            if len(positions_with_zero) == 0:  # This could be added to the for below
-                print "s SATISFIABLE"  # Keeping it this way to simplify
+            if len(positions_with_zero) == 0:
+                print "s SATISFIABLE"
                 print "v " + ' '.join(str(e) for e in sol) + " 0"
                 return sol
             x2 = positions_with_zero[randint(0, len(positions_with_zero) - 1)]
