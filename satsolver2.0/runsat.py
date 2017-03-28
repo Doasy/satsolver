@@ -38,23 +38,18 @@ def runsat(clauses, n_vars):
         sol = RandomSolution(n_vars)
         num_sat_lit = createDataStruct2(F, sol)
         for i in xrange(3*n_vars):
-            # print num_sat_lit
             positions_with_zero = [i for i, j in enumerate(num_sat_lit) if j == 0]
             if len(positions_with_zero) == 0:  # This could be added to the for below
                 print "s SATISFIABLE"  # Keeping it this way to simplify
                 print "v " + ' '.join(str(e) for e in sol) + " 0"
                 return sol
             x = positions_with_zero[randint(0, len(positions_with_zero)-1)]
-            #print "x:"+str(x)
-            #for x in range(len(num_sat_lit)):
             if num_sat_lit[x] == 0:
-                #print "x:"+str(x)
-                if random() < 0.25:
+                if random() < 0.30:
                     to_swap = abs(F[x][randint(0, len(F[0]) - 1)])
                 else:
                     to_swap = broken(F[x], num_sat_lit,
                                      literals_in_clauses, sol)
-                #break
 
             if sol[to_swap - 1] < 0:
                 for element in literals_in_clauses[to_swap - 1]:
@@ -77,9 +72,6 @@ def broken(clause, num_sat_lit, literals_in_clauses, sol):
     for literal in clause:
         broken = 0
         if sol[abs(literal) - 1] < 0:
-            '''for element in literals_in_clauses[abs(literal) - 1]:
-                if num_sat_lit[element] == 0:
-                    broken -= 1'''
             for element in literals_in_clauses[-abs(literal)]:
                 if num_sat_lit[element] == 1:
                     broken += 1
@@ -87,9 +79,6 @@ def broken(clause, num_sat_lit, literals_in_clauses, sol):
             for element in literals_in_clauses[abs(literal) - 1]:
                 if num_sat_lit[element] == 1:
                     broken += 1
-            '''for element in literals_in_clauses[-abs(literal)]:
-                if num_sat_lit[element] == 0:
-                    broken -= 1'''
         if broken < minimum:
             minimum = broken
             to_swap = literal
