@@ -29,7 +29,8 @@ return "No solution found".
 
 # positions_with_zero = [i for i, j in enumerate(num_sat_lit) if j == 0]
 # x = positions_with_zero[randint(0, len(positions_with_zero)-1)]
- 
+
+
 def runsat(clauses, n_vars):
     F = clauses
     literals_in_clauses = createDataStruct(F, n_vars)
@@ -39,22 +40,23 @@ def runsat(clauses, n_vars):
         num_sat_lit = createDataStruct2(F, sol)
         for i in xrange(1000):
             # print num_sat_lit
-            positions_with_zero = [i for i, j in enumerate(num_sat_lit) if j == 0]
+            positions_with_zero = [
+                i for i, j in enumerate(num_sat_lit) if j == 0]
             if len(positions_with_zero) == 0:  # This could be added to the for below
                 print "s SATISFIABLE"  # Keeping it this way to simplify
                 print "v " + ' '.join(str(e) for e in sol) + " 0"
                 return sol
-            x2 = positions_with_zero[randint(0, len(positions_with_zero)-1)]
-            #print "x2:"+str(x2)
-            #for x in range(len(num_sat_lit)):
+            x2 = positions_with_zero[randint(0, len(positions_with_zero) - 1)]
+            # print "x2:"+str(x2)
+            # for x in range(len(num_sat_lit)):
             if num_sat_lit[x2] == 0:
-                #print "x:"+str(x)
+                # print "x:"+str(x)
                 if random() < 0.2:
                     to_swap = abs(F[x2][randint(0, len(F[0]) - 1)])
                 else:
                     to_swap = broken(F[x2], num_sat_lit,
                                      literals_in_clauses, sol)
-                #break
+                # break
 
             if sol[to_swap - 1] < 0:
                 for element in literals_in_clauses[to_swap - 1]:
@@ -67,8 +69,6 @@ def runsat(clauses, n_vars):
                 for element in literals_in_clauses[-to_swap]:
                     num_sat_lit[element] += 1
             sol[to_swap - 1] *= -1
-            
-        
 
 
 def broken(clause, num_sat_lit, literals_in_clauses, sol):
