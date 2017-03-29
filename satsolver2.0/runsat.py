@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-from RandomSolution import *
+#from RandomSolution import *
 from random import *
-from ParseCnfFormula import *
+#from ParseCnfFormula import *
 import sys
 
 '''
@@ -29,7 +29,23 @@ return "No solution found".
 
 # positions_with_zero = [i for i, j in enumerate(num_sat_lit) if j == 0]
 # x = positions_with_zero[randint(0, len(positions_with_zero)-1)]
+def RandomSolution(n_var):
+    sol = range(1, n_var+1)
+    for i in xrange(len(sol)):
+        if random() < 0.5:
+            sol[i] *= -1
+    return sol
 
+def ParseCnfFormula(CNF):
+    clauses = []
+    n_vars = 0
+    for line in CNF:
+        line = line.split()
+        if line[0] != 'c' and line[0] != 'p':
+            clauses.append([int(x) for x in line[:-1]])
+        elif line[0] == 'p':
+            n_vars = line[2]
+    return int(n_vars), clauses
 
 def runsat(clauses, n_vars):
     F = clauses
